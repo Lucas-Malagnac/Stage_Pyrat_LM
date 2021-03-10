@@ -285,7 +285,6 @@ function formulaires_carte_verifier_3_dist() {
 }
 
 function formulaires_carte_traiter_dist() {
-  // on charge les saisies, si besoin
   return array('message_ok'=>'Votre saisie a bien été prise en compte!');
 }
 
