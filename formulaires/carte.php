@@ -230,7 +230,13 @@ function carte3(){
 function formulaires_carte_charger_dist() {
 // on charge les saisies et les champs qui nécessitent un accès par les fonctions
 $valeurs = array(
-   /*'texte1' => '',
+           
+    'carte' => carte(),
+    'carte2' => carte2(),
+    'carte3' => carte3(),
+    '_etapes' => 3,
+
+    'texte1' => '',
     'texte2' => '',
     'texte3' => '',
     'nom' => '',
@@ -238,17 +244,16 @@ $valeurs = array(
     'telephone' => '',
     'ville' => '',
     'adresse' => '',
+    'adresse_complement' => '',
     'code_postal' => '',
     'fact_nom' => '',    
     'fact_societe' => '',
     'fact_adresse' => '',
     'fact_code_postal' => '',
-    'fact_ville' => '',*/           
-    'carte' => carte(),
-    'carte2' => carte2(),
-    'carte3' => carte3(),
-    '_etapes' => 3,
+    'fact_adresse_complement' => '',
+    'fact_ville' => '',
   );
+
 return $valeurs;
 
 
