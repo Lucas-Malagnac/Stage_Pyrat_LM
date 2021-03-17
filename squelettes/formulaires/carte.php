@@ -320,7 +320,7 @@ return array('message_ok'=>'Votre saisie a bien été prise en compte!');
 
 /*sql_uptateq met à jour du contenu d'une table SQL*/
 
-/*sql_countsel Retourne le nombre de lignes d'une sélection*/
+/*sql_countsel Retourne le nombre de lignes d'une sélection.*/
 
 /*sql_select effectue une requete de selection*/
 
