@@ -1,0 +1,17 @@
+
+<div class="formulaire_spip">
+
+	<h3>Formulaire multi etapes #ENV{_etape}/#ENV{_etapes}</h3>
+
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	[(#ENV{editable})
+
+	<form method='POST' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action},#FORM}
+    	#GENERER_SAISIES{#ENV{carte2}}
+
+	  <p class='boutons'><input type='submit' class='submit' name="_retour_etape_1" value='precedent' /> <input type='submit' class='submit' value='suivant' /></p>
+	</div></form>
+	]
+</div>
