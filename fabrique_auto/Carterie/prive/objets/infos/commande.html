@@ -1,0 +1,30 @@
+<BOUCLE_commande(CARTES_COMMANDES){id_commande=#ENV{id}}{statut?}>
+<div class="infos">
+[(#SET{texte_objet,<:commande:titre_commande:/>})]
+<div class="numero"><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:/><p>#ID_COMMANDE</p></div>
+
+[(#FORMULAIRE_INSTITUER_OBJET{commande,#ID_COMMANDE})]
+
+<div class='nb_elements'><!--nb_elements--></div>
+
+[(#REM)
+
+	Bouton voir en ligne
+
+]
+<BOUCLE_publie(CARTES_COMMANDES){id_commande}>
+	[(#VAL{redirect}
+		|generer_url_action{type=commande&id=#ID_COMMANDE}
+		|parametre_url{var_mode,calcul}
+		|icone_horizontale{<:icone_voir_en_ligne:>,racine})]
+</BOUCLE_publie>
+	[(#AUTORISER{previsualiser,commande,#ID_COMMANDE,'',#ARRAY{statut,#STATUT}})
+		[(#VAL{redirect}
+			|generer_url_action{type=commande&id=#ID_COMMANDE}
+			|parametre_url{var_mode,preview}
+			|icone_horizontale{<:previsualiser:>,preview})]
+	]
+<//B_publie>
+
+</div>
+</BOUCLE_commande>

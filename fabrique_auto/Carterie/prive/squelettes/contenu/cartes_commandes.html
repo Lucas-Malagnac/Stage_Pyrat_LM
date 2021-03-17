@@ -1,0 +1,11 @@
+[(#AUTORISER{voir,_cartes_commandes}|sinon_interdire_acces)]
+<h1 class="grostitre"><:commande:titre_page_cartes_commandes:/></h1>
+
+#FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
+<div class="nettoyeur"></div>
+
+<INCLURE{fond=prive/objets/liste/cartes_commandes, env, ajax, sinon=<:commande:info_aucun_commande:/>}>
+
+[(#AUTORISER{creer,commande})
+	[(#URL_ECRIRE{commande_edit,new=oui}|icone_verticale{<:commande:icone_creer_commande:/>,commande,new,right})]
+]

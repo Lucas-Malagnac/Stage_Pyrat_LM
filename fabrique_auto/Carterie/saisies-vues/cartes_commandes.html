@@ -1,0 +1,20 @@
+<BOUCLE_test_multiple(CONDITION){si #ENV{multiple}|=={on}|oui}>
+	[(#SET{valeur,[(#ENV*{valeur}|is_array|?{[(#ENV*{valeur})],[(#ENV*{valeur}|explode{','})]})]})]
+	<B_cartes_commandes_selectionnes>
+	<ul>
+	<BOUCLE_cartes_commandes_selectionnes(CARTES_COMMANDES){id_commande IN #GET*{valeur}}
+		{par num nom, nom}{statut?}{tout}>
+		<li class="choix">#NOM (#ID_COMMANDE)</li>
+	</BOUCLE_cartes_commandes_selectionnes>
+	</ul>
+	</B_cartes_commandes_selectionnes>
+   	[(#ENV*{sans_reponse}|propre)]
+	<//B_cartes_commandes_selectionnes>
+</BOUCLE_test_multiple>
+	<BOUCLE_commande_selectionne(CARTES_COMMANDES){id_commande=#ENV{valeur}}
+		{par num nom, nom}{statut?}{tout}>
+	  	<p>#NOM (#ID_COMMANDE)</p>
+	</BOUCLE_commande_selectionne>
+   	[(#ENV*{sans_reponse}|propre)]
+	<//B_commande_selectionne>
+<//B_test_multiple>

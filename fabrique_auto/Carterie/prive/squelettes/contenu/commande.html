@@ -1,0 +1,56 @@
+[(#AUTORISER{voir,commande,#ID_COMMANDE}|sinon_interdire_acces)]
+[(#SET{url_voir,#VAL{commande}|objet_info{url_voir}})]
+[(#SET{url_edit,#VAL{commande}|objet_info{url_edit}})]
+<BOUCLE_commande(CARTES_COMMANDES){id_commande}{statut==.*}{si #ENV{exec}|=={#GET{url_voir}}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,commande,#ID_COMMANDE})
+		[(#ID_COMMANDE|afficher_qui_edite{commande}|non)
+			[(#URL_ECRIRE{#GET{url_edit},id_commande=#ID_COMMANDE}|icone_verticale{<:commande:icone_modifier_commande:/>,commande,edit,right ajax preload})]
+		]
+		[(#ID_COMMANDE|afficher_qui_edite{commande}|oui)
+			[(#URL_ECRIRE{#GET{url_edit},id_commande=#ID_COMMANDE}|icone_verticale{#ID_COMMANDE|afficher_qui_edite{commande},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#NOM|sinon{<:info_sans_titre:/>})[(#CHEMIN_IMAGE{commande-24.png}|balise_img{commande,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{commande,#ID_COMMANDE}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/commande,id=#ID_COMMANDE,id_commande=#ID_COMMANDE,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,commande,#ID_COMMANDE})
+	[(#ID_COMMANDE|afficher_qui_edite{commande}|non)
+		[(#URL_ECRIRE{#GET{url_edit},id_commande=#ID_COMMANDE}|icone_verticale{<:commande:icone_modifier_commande:/>,commande,edit,right ajax preload})]
+	]
+	[(#ID_COMMANDE|afficher_qui_edite{commande}|oui)
+		[(#URL_ECRIRE{#GET{url_edit},id_commande=#ID_COMMANDE}|icone_verticale{#ID_COMMANDE|afficher_qui_edite{commande},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,commande,id,#ID_COMMANDE},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+
+
+#SET{enfants,''}
+[(#VAL{prive/objets/contenu/commande-enfants}|trouver_fond|oui)
+	[(#SET{enfants,[(#INCLURE{fond=prive/objets/contenu/commande-enfants,id_commande,env})]})]
+]
+[(#PIPELINE{affiche_enfants,[(#ARRAY{args,#ARRAY{exec,commande,id_commande,#ID_COMMANDE,objet,commande,id_objet,#ID_COMMANDE},data,#GET{enfants}})]})]
+
+[(#CONST{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_commande>
+[(#ENV**{exec}|=={#GET{url_edit}}|?{#INCLURE{fond=prive/squelettes/contenu/#GET{url_edit},redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_commande>
