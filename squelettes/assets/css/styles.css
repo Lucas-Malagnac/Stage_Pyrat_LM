@@ -1,0 +1,103 @@
+.case_genere{
+	border: 1px solid black;
+	float:left;
+	background-color: rgb(237, 237, 237);
+}
+.case_contenu{
+	border: 1px solid black;
+	float: right;
+	margin-right: 30em;
+}
+
+.carterie_texte1, .carterie_texte2, .carterie_texte3 {
+    height: 6em;
+    border-top: solid 1px #8e8e8e; 
+    border-right: solid 1px #d1d1d1; 
+    border-left: solid 1px #d1d1d1; 
+    border-bottom: solid 1px #e4e4e4; 
+    width: 20em; 
+    display: flex;
+    margin: 5px; 
+}
+.carterie_texte1:focus, .carterie_texte2:focus, .carterie_texte3:focus {
+    border-color: #4488cc; 
+    border-style: solid; 
+    border-width: 2px; 
+    outline: 0; 
+}
+
+.carterie_contenu1, .carterie_contenu2, .carterie_contenu3{
+	border: 1px solid black;
+	height: 6em;
+	width: 50em;
+	background-color: white;
+
+}
+
+fieldset{
+	background-color: rgb(219, 219, 219);
+}
+.caseform{
+	display: flex;
+	float: left;
+}
+
+.nom, .email, .telephone, .ville, .adresse, .adresse_complement, .code_postal {  
+    border-top: solid 1px #8e8e8e; 
+    border-right: solid 1px #d1d1d1; 
+    border-left: solid 1px #d1d1d1; 
+    border-bottom: solid 1px #e4e4e4; 
+    height: 25px; 
+    width: 275px; 
+    display: flex;
+ } 
+ 
+.nom:focus, .email:focus, .telephone:focus,
+.ville:focus, .adresse:focus, .adresse_complement:focus, 
+.code_postal:focus   {  
+    border-color: #4488cc; 
+    border-style: solid; 
+    border-width: 2px; 
+    outline: 0; 
+ } 
+.fact_nom, .fact_societe,
+.fact_adresse, .fact_adresse_complement,
+.fact_code_postal, .fact_ville  {  
+    border-top: solid 1px #8e8e8e; 
+    border-right: solid 1px #d1d1d1; 
+    border-left: solid 1px #d1d1d1; 
+    border-bottom: solid 1px #e4e4e4; 
+    height: 25px; 
+    width: 275px; 
+    display: flex;
+ } 
+ 
+.fact_nom:focus, .fact_societe:focus,
+.fact_adresse:focus, .fact_adresse_complement:focus,
+.fact_code_postal:focus, .fact_ville:focus {  
+    border-color: #4488cc; 
+    border-style: solid; 
+    border-width: 2px; 
+    outline: 0; 
+ } 
+.submit {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #c9c9c9 5%, #e9e9e9 100%);
+	background-color:#c9c9c9;
+	border-radius:3px;
+	border:1px solid #cccccc;
+	display:inline-block;
+	cursor:pointer;
+	color:#404040;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+
+.submit:hover {
+	background:linear-gradient(to bottom, #e9e9e9 5%, #c9c9c9 100%);
+	background-color:#e9e9e9;
+}
+
