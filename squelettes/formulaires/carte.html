@@ -1,24 +1,57 @@
-<div class="formulaire_spip">
+
 
 	<h3>Formulaire Carte de #ENV{_etape}/#ENV{_etapes}</h3>
 
-	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
-	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV{message_erreur})</p>]
+
+<div class="case_genere">
 
 	[(#ENV{editable})
-	<form method='POST' action='#ENV{action}' ><div>
+	<form method='POST' action='#ENV{action}' >
+	
 		#ACTION_FORMULAIRE{#ENV{action},#FORM}
     	#GENERER_SAISIES{#ENV{carte}}
-	  <p class='boutons'><input type='submit' class='submit' value='suivant' /></p>
-	</div>
+		<input type='submit' class='submit' value='suivant' />
+	
+	</form>]
 
-</form>
-	]
 </div>
 
-[(#FORMULAIRE_PAYER_ACTE{10,
-		      #ARRAY{
-			      montant_ht,8,
-			      id_auteur,#ID_AUTEUR,
-		      }
-})]
+
+<div class="case_contenu">
+#GENERER_SAISIES{#ENV{contenu}}
+</div>
+
+<script type="text/javascript">
+
+ $(document).ready(function(){
+        $(".carterie_contenu1").prop("disabled", true);
+      });
+ $(document).ready(function(){
+        $(".carterie_contenu2").prop("disabled", true);
+      });
+ $(document).ready(function(){
+        $(".carterie_contenu3").prop("disabled", true);
+      });
+
+
+$(document).ready(function(){
+	$(".carterie_texte1").keyup(function(){
+		$(".carterie_contenu1").html($(".carterie_texte1").val())
+	});
+});
+
+$(document).ready(function(){
+	$(".carterie_texte2").keyup(function(){
+		$(".carterie_contenu2").html($(".carterie_texte2").val())
+	});
+});
+
+$(document).ready(function(){
+	$(".carterie_texte3").keyup(function(){
+		$(".carterie_contenu3").html($(".carterie_texte3").val())
+	});
+});
+
+</script>
