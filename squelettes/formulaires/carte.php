@@ -1,4 +1,32 @@
-<?php  
+<?php
+function contenu() {  
+  $contenu =array(
+         array(
+        'saisie' => 'textarea',
+        'options' => array(
+          'nom' => 'contenu1',
+          'class' => 'carterie_contenu1'
+        ),
+      ), 
+       array(
+        'saisie' => 'textarea',
+        'options' => array(
+          'nom' => 'contenu2',
+          'class' => 'carterie_contenu2'
+        ),
+      ), 
+       array(
+        'saisie' => 'textarea',
+        'options' => array(
+          'nom' => 'contenu3',
+          'class' => 'carterie_contenu3',
+        ),
+      ),
+    );
+    return $contenu;
+}
+
+
 function carte() {
 
   $carte =array(
@@ -7,15 +35,18 @@ function carte() {
         'options' => array(
           'nom' => 'texte1',
           'label' => 'Texte 1:',
-          'obligatoire' => 'oui'
+          'obligatoire' => 'oui',
+          'class' => 'carterie_texte1'
         ),
       ),
+    
       array(
         'saisie' => 'textarea',
         'options' => array(
           'nom' => 'texte2',
           'label' => 'Texte 2:',
-          'obligatoire' => 'oui'
+          'obligatoire' => 'oui',
+           'class' => 'carterie_texte2'
         )
 
       ),
@@ -24,9 +55,14 @@ function carte() {
         'options' => array(
           'nom' => 'texte3',
           'label' => 'Texte 3:',
-          'obligatoire' => 'oui'
+          'obligatoire' => 'oui',
+          'class' => 'carterie_texte3'
         ),
-      ),  );/*fin de carte*/
+
+      ),
+      
+
+    );/*fin de carte*/
     return $carte;
 }
 
@@ -36,8 +72,8 @@ function carte2(){
   array( // le fieldset 
     'saisie' => 'fieldset',
     'options' => array(
-      'nom' => 'commande',
-      'label' => 'Commande'
+      'nom' => 'adresse_livraison',
+      'label' => 'Adresse de livraison'
     ),
 
     'saisies' => array(
@@ -46,7 +82,9 @@ function carte2(){
         'options' => array(
           'nom' => 'nom',
           'label' => 'Nom :',
-          'obligatoire' => 'oui'
+          'obligatoire' => 'oui',
+          'size' => 50,
+          'class' => 'nom'
         ),
       ),
       array(
@@ -54,7 +92,8 @@ function carte2(){
         'options' => array(
           'nom' => 'email',
           'label' => 'Email:',
-          'obligatoire' => 'oui'
+          'obligatoire' => 'oui',
+           'class' => 'email'
         ),
         'verifier' => array(
           'type' => 'email',
@@ -68,6 +107,7 @@ function carte2(){
           'obligatoire' => 'oui',
           'size' => 20,
           'maxlength' => 10,
+          'class' => 'telephone'
         ),
         'verifier' => array(
           'type' => 'telephone',
@@ -82,6 +122,7 @@ function carte2(){
           'obligatoire' => 'oui',
           'size' => 20,
           'maxlength' => 30,
+          'class' => 'ville'
         ),
         'verifier' => array(
     ),
@@ -95,6 +136,7 @@ function carte2(){
           'obligatoire' => 'oui',
           'size' => 20,
           'maxlength' => 30,
+          'class' => 'adresse'
         ),
         'verifier' => array(
     ),
@@ -105,9 +147,9 @@ function carte2(){
         'options' => array(
           'nom' => 'adresse_complement',
           'label' => 'Adresse de complement :',
-          'obligatoire' => 'oui',
           'size' => 20,
           'maxlength' => 30,
+          'class' => 'adresse_complement'
         ),
         'verifier' => array(
     ),
@@ -121,9 +163,22 @@ function carte2(){
           'obligatoire' => 'oui',
           'size' => 20,
           'maxlength' => 5,
+          'class' => 'code_postal'
         ),
         'verifier' => array(
           'type' => 'code_postal'
+        ),
+      ),
+
+       array(
+        'saisie' => 'input',
+        'options' => array(
+          'nom' => 'case',
+          'type' => 'checkbox',
+           'label' => 'Case :',
+           'value' => 'a'
+        ),
+        'verifier' => array(
         ),
       ),
     ),
@@ -151,6 +206,7 @@ function carte3(){
           'obligatoire' => 'oui',
           'size' => 20,
           'maxlength' => 30,
+          'class' => 'fact_nom'
         ),
         'verifier' => array(
         ),
@@ -164,6 +220,7 @@ function carte3(){
           'obligatoire' => 'oui',
           'size' => 20,
           'maxlength' => 30,
+          'class' => 'fact_societe'
         ),
         'verifier' => array(
         ),
@@ -177,6 +234,7 @@ function carte3(){
           'obligatoire' => 'oui',
           'size' => 20,
           'maxlength' => 30,
+          'class' => 'fact_adresse'
         ),
         'verifier' => array(
         ),
@@ -187,9 +245,9 @@ function carte3(){
         'options' => array(
           'nom' => 'fact_adresse_complement',
           'label' => 'Adresse complément :',
-          'obligatoire' => 'oui',
           'size' => 20,
           'maxlength' => 30,
+          'class' => 'fact_adresse_complement'
         ),
         'verifier' => array(
         ),
@@ -203,6 +261,7 @@ function carte3(){
           'obligatoire' => 'oui',
           'size' => 20,
           'maxlength' => 5,
+          'class' => 'fact_code_postal'
         ),
         'verifier' => array(
           'type' => 'code_postal'
@@ -217,6 +276,7 @@ function carte3(){
           'obligatoire' => 'oui',
           'size' => 20,
           'maxlength' => 30,
+          'class' => 'fact_ville'
         ),
         'verifier' => array(
         ),
@@ -229,6 +289,8 @@ function carte3(){
 
 function formulaires_carte_charger_dist() {
 // on charge les saisies et les champs qui nécessitent un accès par les fonctions
+// selection
+
 $valeurs = array(
            
     'carte' => carte(),
@@ -237,6 +299,12 @@ $valeurs = array(
     '_etapes' => 3,
 
 
+
+    'contenu' =>contenu(),
+    'contenu1' => '',
+    'contenu2' => '',
+    'contenu3' => '',
+    'case' => '',
     'texte1' => '',
     'texte2' => '',
     'texte3' => '',
@@ -313,16 +381,16 @@ $bdd_insert = sql_insertq('spipstage_cartes_commandes',
         'code_postal' => $code_postal,   
         'telephone' => $telephone
 ));
-
 return array('message_ok'=>'Votre saisie a bien été prise en compte!');
 
 }
 
 /*sql_uptateq met à jour du contenu d'une table SQL*/
 
-/*sql_countsel Retourne le nombre de lignes d'une sélection.*/
+/*sql_countsel Retourne le nombre de lignes d'une sélection*/
 
 /*sql_select effectue une requete de selection*/
 
 /*_request permet de récupérer des variables envoyées par l’internaute, soit par l’URL, soit par un formulaire posté.*/
+
 ?>
