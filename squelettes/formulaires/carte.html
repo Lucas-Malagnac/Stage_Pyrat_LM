@@ -26,13 +26,9 @@
 <script type="text/javascript">
 
  $(document).ready(function(){
-        $(".carterie_contenu1").prop("disabled", true);
-      });
- $(document).ready(function(){
-        $(".carterie_contenu2").prop("disabled", true);
-      });
- $(document).ready(function(){
-        $(".carterie_contenu3").prop("disabled", true);
+ 		$(".carterie_contenu1").prop("readonly", true);
+        $(".carterie_contenu2").prop("readonly", true);
+        $(".carterie_contenu3").prop("readonly", true);
       });
 
 
@@ -40,18 +36,13 @@ $(document).ready(function(){
 	$(".carterie_texte1").keyup(function(){
 		$(".carterie_contenu1").html($(".carterie_texte1").val())
 	});
-});
-
-$(document).ready(function(){
 	$(".carterie_texte2").keyup(function(){
 		$(".carterie_contenu2").html($(".carterie_texte2").val())
 	});
-});
-
-$(document).ready(function(){
 	$(".carterie_texte3").keyup(function(){
 		$(".carterie_contenu3").html($(".carterie_texte3").val())
 	});
 });
+
 
 </script>
