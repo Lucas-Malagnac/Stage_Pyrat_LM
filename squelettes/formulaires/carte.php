@@ -1,4 +1,23 @@
 <?php
+
+function police_choix(){
+  $police_type = array(
+     array( //liste déroulante
+        'saisie' => 'selection',
+        'options' => array(
+          'nom' => 'police',
+          'class' => 'police_select',
+          'multiple' => 'multiple',
+          'datas' => array(  // apparté : penser à ranger les choix par ordre alphabétique (ou numérique), c'est plus facile à trouver pour ceux qui utilisent le formulaire
+            'time_new_roman' => 'Times New Roman',
+            'verdana' => 'Verdana',
+          )
+        )
+      ),
+  );
+  return $police_type;
+}
+
 function contenu() {  
   $contenu =array(
          array(
@@ -29,7 +48,7 @@ function contenu() {
 
 function carte() {
 
-  $carte =array(
+  $carte = array(
       array(
         'saisie' => 'textarea',
         'options' => array(
@@ -58,9 +77,7 @@ function carte() {
           'obligatoire' => 'oui',
           'class' => 'carterie_texte3'
         ),
-
-      ),
-      
+      ),    
 
     );/*fin de carte*/
     return $carte;
@@ -289,7 +306,6 @@ function carte3(){
 
 function formulaires_carte_charger_dist() {
 // on charge les saisies et les champs qui nécessitent un accès par les fonctions
-// selection
 
 $valeurs = array(
            
@@ -298,16 +314,16 @@ $valeurs = array(
     'carte3' => carte3(),
     '_etapes' => 3,
 
-
-
-    'contenu' =>contenu(),
+    'police_choix' => police_choix(),
+    'police_type' => '',
+    'contenu' => contenu(),
     'contenu1' => '',
     'contenu2' => '',
     'contenu3' => '',
     'case' => '',
-    'texte1' => '',
-    'texte2' => '',
-    'texte3' => '',
+    'texte1' => sql_fetsel('texte1', 'spipstage_modeles_textes'),
+    'texte2' => sql_fetsel('texte2', 'spipstage_modeles_textes'),
+    'texte3' => sql_fetsel('texte3', 'spipstage_modeles_textes'),
     'nom' => '',
     'email' => '',
     'telephone' => '',
@@ -324,7 +340,6 @@ $valeurs = array(
   );
 
 return $valeurs;
-
 
 }
 
@@ -360,7 +375,7 @@ function formulaires_carte_verifier_3_dist() {
 
 function formulaires_carte_traiter_dist() {
 
-$texte1 = _request('texte1');
+//$texte1 = _request('texte1');
 $texte2 = _request('texte2');  
 $texte3 = _request('texte3');
 $nom = _request('nom');
