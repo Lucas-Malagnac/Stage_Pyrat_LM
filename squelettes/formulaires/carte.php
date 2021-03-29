@@ -78,7 +78,19 @@ function carte() {
           'class' => 'carterie_texte3'
         ),
       ),    
-
+     array( //liste déroulante
+        'saisie' => 'selection',
+        'options' => array(
+          'nom' => 'quantite',
+          'class' => 'quantite',
+          'obligatoire' => 'oui',
+          'datas' => array(  // apparté : penser à ranger les choix par ordre alphabétique (ou numérique), c'est plus facile à trouver pour ceux qui utilisent le formulaire
+            '1' => '1 échantillon - 0.80 €',
+            '30' => '30 cartes - 39 €',
+            '40' => '40 cartes - 48 €',
+          )
+        )
+      ),
     );/*fin de carte*/
     return $carte;
 }
@@ -316,6 +328,7 @@ $valeurs = array(
 
     'police_choix' => police_choix(),
     'police_type' => '',
+    'quantite' => '',
     'contenu' => contenu(),
     'contenu1' => '',
     'contenu2' => '',
