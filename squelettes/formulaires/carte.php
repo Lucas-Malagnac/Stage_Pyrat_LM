@@ -9,8 +9,10 @@ function police_choix(){
           'class' => 'police_select',
           'multiple' => 'multiple',
           'datas' => array(  // apparté : penser à ranger les choix par ordre alphabétique (ou numérique), c'est plus facile à trouver pour ceux qui utilisent le formulaire
-            'time_new_roman' => 'Times New Roman',
-            'verdana' => 'Verdana',
+            'open_sans' => 'Open_Sans',
+            'zen_dots' => 'Zen_Dots',
+            'orelega_one' => 'Orelega One',
+
           )
         )
       ),
@@ -24,21 +26,16 @@ function contenu() {
         'saisie' => 'textarea',
         'options' => array(
           'nom' => 'contenu1',
-          'class' => 'carterie_contenu1'
+          'id_saisie' => 'carterie_contenu1',
+          'class' => 'contenu1',
         ),
-      ), 
+      ),
        array(
         'saisie' => 'textarea',
         'options' => array(
           'nom' => 'contenu2',
-          'class' => 'carterie_contenu2'
-        ),
-      ), 
-       array(
-        'saisie' => 'textarea',
-        'options' => array(
-          'nom' => 'contenu3',
-          'class' => 'carterie_contenu3',
+          'id_saisie' => 'carterie_contenu2',
+          'class' => 'contenu2',
         ),
       ),
     );
@@ -58,7 +55,6 @@ function carte() {
           'class' => 'carterie_texte1'
         ),
       ),
-    
       array(
         'saisie' => 'textarea',
         'options' => array(
@@ -68,15 +64,6 @@ function carte() {
            'class' => 'carterie_texte2'
         )
 
-      ),
-      array(
-        'saisie' => 'textarea',
-        'options' => array(
-          'nom' => 'texte3',
-          'label' => 'Texte 3:',
-          'obligatoire' => 'oui',
-          'class' => 'carterie_texte3'
-        ),
       ),    
      array( //liste déroulante
         'saisie' => 'selection',
@@ -318,13 +305,14 @@ function carte3(){
 
 function formulaires_carte_charger_dist() {
 // on charge les saisies et les champs qui nécessitent un accès par les fonctions
-
+  
 $valeurs = array(
-           
+       
     'carte' => carte(),
     'carte2' => carte2(),
     'carte3' => carte3(),
-    '_etapes' => 3,
+    'carte4' => '',
+    '_etapes' => 4,
 
     'police_choix' => police_choix(),
     'police_type' => '',
@@ -332,11 +320,11 @@ $valeurs = array(
     'contenu' => contenu(),
     'contenu1' => '',
     'contenu2' => '',
-    'contenu3' => '',
+    //'contenu3' => '',
     'case' => '',
-    'texte1' => sql_fetsel('texte1', 'spipstage_modeles_textes'),
-    'texte2' => sql_fetsel('texte2', 'spipstage_modeles_textes'),
-    'texte3' => sql_fetsel('texte3', 'spipstage_modeles_textes'),
+    'texte1' => '',//sql_fetsel('texte1', 'spipstage_modeles_textes')
+    'texte2' => '',//sql_fetsel('texte2', 'spipstage_modeles_textes')
+    //'texte3' => '',//sql_fetsel('texte3', 'spipstage_modeles_textes')
     'nom' => '',
     'email' => '',
     'telephone' => '',
@@ -350,6 +338,7 @@ $valeurs = array(
     'fact_code_postal' => '',
     'fact_adresse_complement' => '',
     'fact_ville' => '',
+    'image' => sql_fetsel('fichier', 'spipstage_cartes_commandes'),
   );
 
 return $valeurs;
@@ -386,11 +375,15 @@ function formulaires_carte_verifier_3_dist() {
   return saisies_verifier($carte3);
 }
 
+function formulaires_carte_verifier_4_dist() {
+  include_spip('inc/saisies');
+}
+
 function formulaires_carte_traiter_dist() {
 
-//$texte1 = _request('texte1');
+$texte1 = _request('texte1');
 $texte2 = _request('texte2');  
-$texte3 = _request('texte3');
+//$texte3 = _request('texte3');
 $nom = _request('nom');
 $email = _request('email');
 $adresse = _request('adresse');
@@ -403,7 +396,7 @@ $bdd_insert = sql_insertq('spipstage_cartes_commandes',
   array('nom' => $nom,
         'texte1' => $texte1,
         'texte2' => $texte2,
-        'texte3' => $texte3,
+        //'texte3' => $texte3,
         'email' => $email,
         'adresse' => $adresse,  
         'code_postal' => $code_postal,   
