@@ -6,18 +6,38 @@ function police_choix(){
         'saisie' => 'selection',
         'options' => array(
           'nom' => 'police',
+          'obligatoire' => 'oui',
           'class' => 'police_select',
           'multiple' => 'multiple',
           'datas' => array(  // apparté : penser à ranger les choix par ordre alphabétique (ou numérique), c'est plus facile à trouver pour ceux qui utilisent le formulaire
             'open_sans' => 'Open_Sans',
             'zen_dots' => 'Zen_Dots',
             'orelega_one' => 'Orelega One',
-
           )
         )
       ),
   );
   return $police_type;
+}
+
+function modeles_textes(){
+  $modeles_textes = array(
+     array( //liste déroulante
+        'saisie' => 'selection',
+        'options' => array(
+          'nom' => 'modeles_textes',
+          'obligatoire' => 'oui',
+          'class' => 'police_select',
+          'multiple' => 'multiple',
+          'datas' => array(  // apparté : penser à ranger les choix par ordre alphabétique (ou numérique), c'est plus facile à trouver pour ceux qui utilisent le formulaire
+            'mod1' => 'Texte1',
+            'mod2' => 'Texte2',
+
+          )
+        )
+      ),
+  );
+  return $modeles_textes;
 }
 
 function contenu() {  
@@ -305,7 +325,7 @@ function carte3(){
 
 function formulaires_carte_charger_dist() {
 // on charge les saisies et les champs qui nécessitent un accès par les fonctions
-  
+$all = sql_allfetsel('texte_modele', 'spipstage_carte_modeles_textes');  
 $valeurs = array(
        
     'carte' => carte(),
@@ -314,17 +334,24 @@ $valeurs = array(
     'carte4' => '',
     '_etapes' => 4,
 
+
+    'open_sans' => '',
+    'zen_dots' => '',
+    'orelega_one' => '',    
     'police_choix' => police_choix(),
     'police_type' => '',
+
+    'modeles_textes' => '',
+    'modeles_textes' => modeles_textes(),
+
     'quantite' => '',
     'contenu' => contenu(),
     'contenu1' => '',
     'contenu2' => '',
     //'contenu3' => '',
     'case' => '',
-    'texte1' => '',//sql_fetsel('texte1', 'spipstage_modeles_textes')
-    'texte2' => '',//sql_fetsel('texte2', 'spipstage_modeles_textes')
-    //'texte3' => '',//sql_fetsel('texte3', 'spipstage_modeles_textes')
+    'texte1' => $all[0]['texte_modele'],
+    'texte2' => $all[1]['texte_modele'],
     'nom' => '',
     'email' => '',
     'telephone' => '',
@@ -338,7 +365,7 @@ $valeurs = array(
     'fact_code_postal' => '',
     'fact_adresse_complement' => '',
     'fact_ville' => '',
-    'image' => sql_fetsel('fichier', 'spipstage_cartes_commandes'),
+   // 'image' => sql_fetsel('fichier', 'spipstage_cartes_commandes'),
   );
 
 return $valeurs;
