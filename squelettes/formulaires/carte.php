@@ -1,4 +1,12 @@
 <?php
+//function choix_texte(){
+  //$choix_texte = array(
+     
+  //);
+ // return $choix_texte;
+//}
+
+
 
 function police_choix(){
   $police_type = array(
@@ -30,8 +38,9 @@ function modeles_textes(){
           'class' => 'police_select',
           'multiple' => 'multiple',
           'datas' => array(  // apparté : penser à ranger les choix par ordre alphabétique (ou numérique), c'est plus facile à trouver pour ceux qui utilisent le formulaire
-            'mod1' => 'Texte1',
-            'mod2' => 'Texte2',
+            'texte1' => 'Texte1',
+            'texte2' => 'Texte2',
+            'texte3' => 'Texte3',
 
           )
         )
@@ -72,7 +81,8 @@ function carte() {
           'nom' => 'texte1',
           'label' => 'Texte 1:',
           'obligatoire' => 'oui',
-          'class' => 'carterie_texte1'
+          'class' => 'carterie_texte1',
+          'id_saisie' => 'texte1',
         ),
       ),
       array(
@@ -81,23 +91,31 @@ function carte() {
           'nom' => 'texte2',
           'label' => 'Texte 2:',
           'obligatoire' => 'oui',
-           'class' => 'carterie_texte2'
+           'class' => 'carterie_texte2',
+           'id_saisie' => 'texte2',
         )
-
-      ),    
-     array( //liste déroulante
-        'saisie' => 'selection',
+      ), 
+       array(
+        'saisie' => 'textarea',
         'options' => array(
-          'nom' => 'quantite',
-          'class' => 'quantite',
-          'obligatoire' => 'oui',
-          'datas' => array(  // apparté : penser à ranger les choix par ordre alphabétique (ou numérique), c'est plus facile à trouver pour ceux qui utilisent le formulaire
-            '1' => '1 échantillon - 0.80 €',
-            '30' => '30 cartes - 39 €',
-            '40' => '40 cartes - 48 €',
-          )
-        )
+          'nom' => 'choix1',
+          'id_saisie' => 'choix1',
+        ),
       ),
+      array(
+        'saisie' => 'textarea',
+        'options' => array(
+          'nom' => 'choix2',
+          'id_saisie' => 'choix2',
+        ),
+      ),
+      array(
+        'saisie' => 'textarea',
+        'options' => array(
+          'nom' => 'choix3',
+          'id_saisie' => 'choix3',
+        ),
+      ),   
     );/*fin de carte*/
     return $carte;
 }
@@ -334,17 +352,23 @@ $valeurs = array(
     'carte4' => '',
     '_etapes' => 4,
 
+    //'choix_texte' => choix_texte(),
+    'choix1' => $all[0]['texte_modele'],//$all[0]['texte_modele'],
+    'choix2' => $all[1]['texte_modele'],//$all[1]['texte_modele'],
+    'choix3' => $all[2]['texte_modele'],//$all[2]['texte_modele'],
+    'choix_texte' => '',
 
     'open_sans' => '',
     'zen_dots' => '',
-    'orelega_one' => '',    
+    'orelega_one' => '',
+
     'police_choix' => police_choix(),
     'police_type' => '',
 
     'modeles_textes' => '',
     'modeles_textes' => modeles_textes(),
 
-    'quantite' => '',
+    'choixtexte' => '',
     'contenu' => contenu(),
     'contenu1' => '',
     'contenu2' => '',
