@@ -16,7 +16,7 @@
 
 </div>
 
-<div class="case_contenu">
+<div class="case_contenu" class='ajax'>
 #GENERER_SAISIES{#ENV{contenu}}
 </div>
 
@@ -24,10 +24,19 @@
 #GENERER_SAISIES{#ENV{police_choix}}
 </div>
 
+<div id="modeles_textes" >  
+#GENERER_SAISIES{#ENV{modeles_textes}}
+</div>
+ 
+#GENERER_SAISIES{#ENV{choix_texte}}
+
+
 <div>
 
 #FORMULAIRE_FORMIDABLE{1}
 
+
+#FORMULAIRE_FORMIDABLE{2}
 
 
 <script type="text/javascript">
@@ -37,31 +46,50 @@ $(document).ready(function(){
 $('#police option[value="open_sans"]').on('click', function(){
 	$('#champ_contenu1').attr('class', 'open_sans');
 	$('#champ_contenu2').attr('class', 'open_sans');
- 	//$(".carterie_contenu1").css("font-family", "Times New Roman");
- 	//$(".carterie_contenu2").css("font-family", "Times New Roman");
- 	//$(".carterie_contenu3").css("font-family", "Times New Roman");
 });
 
 $('#police option[value="zen_dots"]').on('click', function(){
 	$('#champ_contenu1').attr('class', 'zen_dots');
 	$('#champ_contenu2').attr('class', 'zen_dots');
- 	//$(".carterie_contenu1").css("font-family", "Verdana");
- 	//$(".carterie_contenu2").css("font-family", "Verdana");
- 	//$(".carterie_contenu3").css("font-family", "Verdana");
 });
 
 $('#police option[value="orelega_one"]').on('click', function(){
 	$('#champ_contenu1').attr('class', 'orelega_one');
 	$('#champ_contenu2').attr('class', 'orelega_one');
- 	//$(".carterie_contenu1").css("font-family", "Verdana");
- 	//$(".carterie_contenu2").css("font-family", "Verdana");
- 	//$(".carterie_contenu3").css("font-family", "Verdana");
 });
+
+
+var $texte1 = $('#champ_choix1').clone();
+var $texte2 = $('#champ_choix2').clone();
+var $texte3 = $('#champ_choix3').clone();
+$('#modeles_textes option[value="texte1"]').on('click', function(){
+	
+
+  	$('#champ_texte1').replaceWith($texte1);
+});
+$('#modeles_textes option[value="texte2"]').on('click', function(){
+	
+
+	
+  	$('#champ_texte2').replaceWith($texte2);
+});
+$('#modeles_textes option[value="texte3"]').on('click', function(){
+	
+
+	
+  	$('#champ_texte3').replaceWith($texte3);
+});
+//$('#champ_texte1').replaceWith('<textarea id="champ_texte2"></textarea>');
+//$('#modeles_textes option[value="modele2"]').on('click', function(){
+	//$('#champ_texte1').attr('name', 'texte1');
+//});
+
+//$("#p1").replaceWith("texte2");
 
  		$("#champ_contenu1").prop("readonly", true);
         $("#champ_contenu2").prop("readonly", true);
-        //$("#champ_contenu3").prop("readonly", true);
  
+
         
 	$(".carterie_texte1").keyup(function(){
 		$("#champ_contenu1").html($(".carterie_texte1").val());
@@ -69,9 +97,6 @@ $('#police option[value="orelega_one"]').on('click', function(){
 	$(".carterie_texte2").keyup(function(){
 		$("#champ_contenu2").html($(".carterie_texte2").val())
 	});
-	//$(".carterie_texte3").keyup(function(){
-	//	$("#champ_contenu3").html($(".carterie_texte3").val())
-	///});
 });
 
 </script>
