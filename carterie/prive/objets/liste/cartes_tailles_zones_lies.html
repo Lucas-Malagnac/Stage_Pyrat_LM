@@ -1,0 +1,60 @@
+[(#SET{defaut_tri,#ARRAY{
+	multi titre,1,
+	id_taille_zone,1
+}})
+]
+#SET{selection,#ENV**{selection,#ENV{objet_source}|lister_objets_lies{#ENV{objet},#ENV{id_objet},#ENV{_objet_lien}}}}
+#SET{debut,#ENV{debutcarl,#EVAL{_request("debutcarl");}}}
+<B_liste_cartes_tailles_zones>
+[(#REM) En cas de pagination indirecte @32, il faut refaire le set car la boucle
+a mis a jour la valeur avec la page reelle]
+#SET{debut,#ENV{debutcarl,#EVAL{_request("debutcarl");}}}
+#SET{afficher_lettres,#TRI|=={'multi titre'}|oui}
+#ANCRE_PAGINATION
+<div class="liste-objets liste-objets-lies cartes_tailles_zones">
+<table class="spip liste">
+[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{taille_zone:info_1_taille_zone,taille_zone:info_nb_cartes_tailles_zones}})</strong></caption>]
+	<thead>
+		#SET{p,''}
+		<BOUCLE_lettre(CARTES_TAILLES_ZONES){tout}{id_taille_zone IN #GET{selection}}{where?}
+			{tri #ENV{par,multi titre},#GET{defaut_tri}}{id_taille_zone==#GET{afficher_lettres}|?{'.*','A'}}>[
+		(#TITRE**|extraire_multi|initiale|unique|oui)
+		[(#SET{p,#GET{p}|concat{
+		#SELF|parametre_url{debutcarl,@#ID_TAILLE_ZONE}|ancre_url{paginationcarl}|afficher_initiale{#TITRE**|extraire_multi|initiale{},#COMPTEUR_BOUCLE,#GET{debut},#ENV{nb,10}}
+		}})]
+		]#SAUTER{#ENV{nb,10}|moins{#COMPTEUR_BOUCLE|=={1}|?{2,1}}}</BOUCLE_lettre>[
+		(#SET{p,
+			#GET{p}|concat{
+				#REM|afficher_initiale{#REM,#TOTAL_BOUCLE,#GET{debut},#ENV{nb,10}}
+			}
+		})]</B_lettre>
+		[<tr><td colspan="4"><p class="pagination">(#GET{p})</p></td></tr>]
+
+		<tr class="first_row">
+			<th class="titre" scope="col">[(#TRI{multi titre,<:taille_zone:champ_titre_label:/>,ajax})]</th>
+			<th class="action" scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_cartes_tailles_zones(CARTES_TAILLES_ZONES){id_taille_zone IN #GET{selection}}
+		{tri #ENV{par,multi titre},#GET{defaut_tri}}{pagination #ENV{nb,10} carl}>
+		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})][ (#EXPOSE|unique)][ (#TITRE**|extraire_multi|initiale|=={#ENV{i}}|?{on}|unique)][(#ID_TAILLE_ZONE|=={#ENV{id_lien_ajoute}}|oui)append]">
+			<td class="titre">[(#LOGO_TAILLE_ZONE|image_reduire{20,20})]<a href="[(#ID_TAILLE_ZONE|generer_url_entite{taille_zone})]">#TITRE</a></td>
+
+			<td class="action">
+				[(#ENV{editable}|oui)
+					<button type="submit" class="button link delete" name="supprimer_lien\[taille_zone-#ID_TAILLE_ZONE-#OBJET-#ID_OBJET\]" value="X"><:taille_zone:retirer_lien_taille_zone:/> [(#CHEMIN_IMAGE{supprimer-12.png}|balise_img{'X'})]</button>
+				]
+			</td>
+		</tr>
+	</BOUCLE_liste_cartes_tailles_zones>
+	</tbody>
+</table>
+[<p class="pagination">(#PAGINATION{prive})</p>]
+[(#GRAND_TOTAL|>{3}|oui)<div class="action"><button type="submit" class="button link" name="supprimer_lien\[taille_zone-*-#OBJET-#ID_OBJET\]" value="X"><:taille_zone:retirer_tous_liens_cartes_tailles_zones:/> [(#CHEMIN_IMAGE{supprimer-8.png}|balise_img{'X'})]</button></div>]
+</div>
+</B_liste_cartes_tailles_zones>
+<div class="liste-objets liste-objets-lies cartes_tailles_zones caption-wrap">
+	<strong class="caption">[(#ENV*{titre,<:taille_zone:info_aucun_taille_zone:/>})]</strong>
+</div>
+<//B_liste_cartes_tailles_zones>

@@ -1,0 +1,34 @@
+[(#SET{defaut_tri,#ARRAY{
+	titre,1,
+	id_image,1,
+	points,-1
+}})]<B_liste_cartes_images>
+#ANCRE_PAGINATION
+<div class="liste-objets cartes_images">
+<table class="spip liste">
+	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{image:info_1_image,image:info_nb_cartes_images}})</strong></caption>]
+	<thead>
+		<tr class="first_row">
+			<th class="picto" scope="col"></th>
+			<th class="titre" scope="col">[(#TRI{titre,<:image:champ_titre_label:/>,ajax})]</th>
+			<th class="id" scope="col">[(#TRI{id_image,<:info_numero_abbreviation:/>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_cartes_images(CARTES_IMAGES){id_mot?}{id_auteur?}{where?}{recherche?}{tri #ENV{par,num titre},#GET{defaut_tri}}{par titre}{pagination #ENV{nb,10}}>
+		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
+			<td class="picto">[(#CHEMIN_IMAGE{image-16.png}|balise_img)]</td>
+			<td class="titre principale">[(#LOGO_IMAGE|image_reduire{20,26})]<a href="[(#ID_IMAGE|generer_url_entite{image})]" title="<:info_numero_abbreviation|attribut_html:/> #ID_IMAGE">[(#RANG). ]#TITRE</a></td>
+			<td class="id">[(#AUTORISER{modifier,image,#ID_IMAGE}|?{
+				<a href="[(#URL_ECRIRE{image_edit,id_image=#ID_IMAGE})]">#ID_IMAGE</a>,
+				#ID_IMAGE
+			})]</td>
+		</tr>
+	</BOUCLE_liste_cartes_images>
+	</tbody>
+</table>
+[<p class="pagination">(#PAGINATION{prive})</p>]
+</div>
+</B_liste_cartes_images>[
+<div class="liste-objets cartes_images caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_cartes_images>

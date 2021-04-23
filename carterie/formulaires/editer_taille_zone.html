@@ -1,0 +1,46 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_taille_zone,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method="post" action="#ENV{action}"><div>
+		#ACTION_FORMULAIRE
+		<input type="hidden" name="id_taille_zone" value="#ENV{id_taille_zone}" />
+		<div class="editer-groupe">
+
+
+			[(#SAISIE{input, titre, obligatoire=oui,
+				label=<:taille_zone:champ_titre_label:/>})]
+
+			[(#SAISIE{input, zone1_x, obligatoire=oui,
+				label=<:taille_zone:champ_zone1_x_label:/>})]
+
+			[(#SAISIE{input, zone1_y,
+				label=<:taille_zone:champ_zone1_y_label:/>})]
+
+			[(#SAISIE{input, zone1_largeur,
+				label=<:taille_zone:champ_zone1_largeur_label:/>})]
+
+			[(#SAISIE{input, zone1_hauteur,
+				label=<:taille_zone:champ_zone1_hauteur_label:/>})]
+
+			[(#SAISIE{input, zone2_x,
+				label=<:taille_zone:champ_zone2_x_label:/>})]
+
+			[(#SAISIE{input, zone2_y,
+				label=<:taille_zone:champ_zone2_y_label:/>})]
+
+			[(#SAISIE{input, zone2_largeur,
+				label=<:taille_zone:champ_zone2_largeur_label:/>})]
+
+			[(#SAISIE{input, zone2_hauteur,
+				label=<:taille_zone:champ_zone2_hauteur_label:/>})]
+
+
+		</div>
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type="submit" class="submit" value="<:bouton_enregistrer|attribut_html:/>" /></p>
+	</div></form>
+	]
+</div>

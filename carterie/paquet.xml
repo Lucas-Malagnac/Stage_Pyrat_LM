@@ -1,0 +1,62 @@
+<paquet
+	prefix="carterie"
+	categorie="divers"
+	version="1.1.0"
+	etat="dev"
+	compatibilite="[3.2.9;3.2.*]"
+	logo=""
+	documentation=""
+	schema="1.0.0" 
+>
+	<!--
+		Paquet généré le 2021-04-20 13:29:40
+		(Vous pouvez bien entendu supprimer ces commentaires) 
+	-->
+
+	<nom>Carterie</nom>
+	<!-- Des cartes comme s&#039;il en pleuvait -->
+
+	<!-- cette balise peut être présente plusieurs fois s'il y a plusieurs auteurs --> 
+	<auteur>Malagnac</auteur>
+	<!-- cette balise peut être présente pour indiquer d’autres crédits -->
+	<!-- <credit lien="https://example.com/icon">Logo by @example</credit> --> 
+
+	<licence>GNU/GPL</licence>
+
+	<!--
+		Exemple de commandes
+		* dependances
+		<necessite nom="saisies" compatibilite="[3.23.2;]" />
+		<utilise nom="saisies" compatibilite="[3.23.2;]" />
+		<lib nom="simplehtmldom" lien="http://chemin_vers_archive.zip" />
+		* pipelines
+		<pipeline nom="autoriser" inclure="carterie_autorisations.php" />
+		<pipeline nom="insert_head" inclure="carterie_pipelines.php" />
+		* declarer un pipeline 
+		<pipeline nom="mon_pipeline" action="" />
+		* parents de menus de SPIP :
+				menu_accueil (à éviter), menu_edition, menu_publication,
+				menu_activite, menu_squelette, menu_administration, menu_configuration 
+		<menu nom="carterie" titre="carterie:carterie_titre" parent="menu_edition"  icone="images/carterie-16.png" />
+		* parents d'onglets... configuration, plugins, statistiques, ... 
+		<onglet nom="carterie" titre="carterie:carterie_titre" parent="configuration" icone="images/carterie-24.png" />
+	-->
+
+	<pipeline nom="insert_head_css" inclure="carterie_pipelines.php" />
+	<necessite nom="saisies" compatibilite="[3.50.1;]" /> 
+
+
+	<pipeline nom="autoriser" inclure="carterie_autorisations.php" /> 
+
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/carterie.php" /> 
+	<pipeline nom="declarer_tables_interfaces" inclure="base/carterie.php" /> 
+	<pipeline nom="declarer_tables_auxiliaires" inclure="base/carterie.php" /> 
+	<pipeline nom="affiche_milieu" inclure="carterie_pipelines.php" /> 
+	<pipeline nom="optimiser_base_disparus" inclure="carterie_pipelines.php" /> 
+
+	<menu nom="cartes_commandes" titre="commande:titre_cartes_commandes" parent="menu_edition" icone="images/commande-16.png" action="cartes_commandes" /> 
+	<menu nom="cartes_tailles_zones" titre="taille_zone:titre_cartes_tailles_zones" parent="menu_edition" icone="images/taille_zone-16.png" action="cartes_tailles_zones" /> 
+	<menu nom="cartes_images" titre="image:titre_cartes_images" parent="menu_edition" icone="images/image-16.png" action="cartes_images" /> 
+	<menu nom="carte_modeles_textes" titre="carte_modeles_texte:titre_carte_modeles_textes" parent="menu_edition" icone="images/carte_modeles_texte-16.png" action="carte_modeles_textes" /> 
+	<menu nom="carte_modeles_texte_creer" titre="carte_modeles_texte:icone_creer_carte_modeles_texte" parent="outils_rapides" icone="images/carte_modeles_texte-new-16.png" action="carte_modeles_texte_edit" parametres="new=oui" /> 
+</paquet>

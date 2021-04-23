@@ -1,0 +1,34 @@
+[(#SET{defaut_tri,#ARRAY{
+	titre,1,
+	id_taille_zone,1,
+	points,-1
+}})]<B_liste_cartes_tailles_zones>
+#ANCRE_PAGINATION
+<div class="liste-objets cartes_tailles_zones">
+<table class="spip liste">
+	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{taille_zone:info_1_taille_zone,taille_zone:info_nb_cartes_tailles_zones}})</strong></caption>]
+	<thead>
+		<tr class="first_row">
+			<th class="picto" scope="col"></th>
+			<th class="titre" scope="col">[(#TRI{titre,<:taille_zone:champ_titre_label:/>,ajax})]</th>
+			<th class="id" scope="col">[(#TRI{id_taille_zone,<:info_numero_abbreviation:/>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_cartes_tailles_zones(CARTES_TAILLES_ZONES){id_mot?}{id_auteur?}{where?}{recherche?}{tri #ENV{par,num titre},#GET{defaut_tri}}{par titre}{pagination #ENV{nb,10}}>
+		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
+			<td class="picto">[(#CHEMIN_IMAGE{taille_zone-16.png}|balise_img)]</td>
+			<td class="titre principale">[(#LOGO_TAILLE_ZONE|image_reduire{20,26})]<a href="[(#ID_TAILLE_ZONE|generer_url_entite{taille_zone})]" title="<:info_numero_abbreviation|attribut_html:/> #ID_TAILLE_ZONE">[(#RANG). ]#TITRE</a></td>
+			<td class="id">[(#AUTORISER{modifier,taille_zone,#ID_TAILLE_ZONE}|?{
+				<a href="[(#URL_ECRIRE{taille_zone_edit,id_taille_zone=#ID_TAILLE_ZONE})]">#ID_TAILLE_ZONE</a>,
+				#ID_TAILLE_ZONE
+			})]</td>
+		</tr>
+	</BOUCLE_liste_cartes_tailles_zones>
+	</tbody>
+</table>
+[<p class="pagination">(#PAGINATION{prive})</p>]
+</div>
+</B_liste_cartes_tailles_zones>[
+<div class="liste-objets cartes_tailles_zones caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_cartes_tailles_zones>

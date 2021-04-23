@@ -1,0 +1,36 @@
+[(#ID_TAILLE_ZONE|oui)
+	[(#AUTORISER{modifier,taille_zone,#ID_TAILLE_ZONE}|sinon_interdire_acces)]
+	[(#SET{id_parent,#INFO_{taille_zone,#ID_TAILLE_ZONE}})]
+]
+
+
+[(#ID_TAILLE_ZONE|non)
+	[(#AUTORISER{creer,taille_zone}|sinon_interdire_acces)]
+]
+
+#SET{redirect,#ENV{redirect}|sinon{#ID_TAILLE_ZONE|?{#ID_TAILLE_ZONE|generer_url_entite{taille_zone},#URL_ECRIRE{cartes_tailles_zones}}}}
+
+
+
+<div class="cadre-formulaire-editer">
+<div class="entete-formulaire">
+	[(#ID_TAILLE_ZONE|oui)
+	[(#GET{redirect}|icone_verticale{<:icone_retour:/>,taille_zone,'',left retour[(#ENV{retourajax,''}|oui)ajax preload]})]
+	]
+	[
+		[(#ID_TAILLE_ZONE|?{<:taille_zone:icone_modifier_taille_zone:/>,<:taille_zone:icone_creer_taille_zone:/>})]
+		<h1>(#ENV{titre,#INFO_TITRE{taille_zone,#ID_TAILLE_ZONE}|sinon{<:info_sans_titre:/>}})</h1>
+	]
+</div>
+
+#SET{redirect,#ENV{redirect,#ID_TAILLE_ZONE|generer_url_entite{taille_zone}}}
+[(#ENV{retourajax,''}|oui)
+	#SET{redirect,'javascript:if (window.jQuery) jQuery(".entete-formulaire .retour a").followLink();'}
+	<div class="ajax">
+]
+		[(#FORMULAIRE_EDITER_TAILLE_ZONE{#ENV{id_taille_zone,oui}, #GET{redirect}, #ENV{associer_objet}})]
+[(#ENV{retourajax,''}|oui)
+	</div>
+	<script type="text/javascript">/*<!\[CDATA\[*/reloadExecPage('#ENV{exec}');/*\]\]>*/</script>
+]
+</div>

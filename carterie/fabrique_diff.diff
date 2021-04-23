@@ -1,0 +1,674 @@
+Fichiers supprimés : 
+- action/supprimer_police.php
+- formulaires/editer_police.html
+- formulaires/editer_police.php
+- lang/police_fr.php
+- prive/objets/contenu/police.html
+- prive/objets/infos/police.html
+- prive/objets/liste/cartes_polices.html
+- prive/squelettes/contenu/cartes_polices.html
+- prive/squelettes/contenu/police.html
+- saisies
+- saisies/cartes_polices.html
+- saisies-vues
+- saisies-vues/cartes_polices.html
+
+Fichiers modifiés : 
+
+
+base/carterie.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\BASE\carterie.php et ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\BASE\CARTERIE.PHP
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\BASE\carterie.php
+   29:          $interfaces['table_des_tables']['cartes_tailles_zones'] = 'cartes_tailles_zones';
+   30:          $interfaces['table_des_tables']['cartes_polices'] = 'cartes_polices';
+   31:          $interfaces['table_des_tables']['cartes_images'] = 'cartes_images';
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\BASE\CARTERIE.PHP
+   29:          $interfaces['table_des_tables']['cartes_tailles_zones'] = 'cartes_tailles_zones';
+   30:          $interfaces['table_des_tables']['cartes_images'] = 'cartes_images';
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\BASE\carterie.php
+  142:
+  143:          $tables['spip_cartes_polices'] = array(
+  144:                  'type' => 'police',
+  145:                  'principale' => 'oui',
+  146:                  'table_objet_surnoms' => array('cartespolice'), // table_objet('police') => 'cartes_polices'
+  147:                  'field'=> array(
+  148:                          'id_police'          => 'bigint(21) NOT NULL',
+  149:                          'police'             => 'varchar(127) NOT NULL DEFAULT ""',
+  150:                          'titre'              => 'varchar(127) NOT NULL DEFAULT ""',
+  151:                          'linkfont'           => 'varchar(127) NOT NULL DEFAULT ""',
+  152:                          'font-family'        => 'varchar(255) NOT NULL DEFAULT ""',
+  153:                          'maj'                => 'TIMESTAMP NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\BASE\CARTERIE.PHP
+  141:
+  142:          $tables['spip_cartes_images'] = array(
+  143:                  'type' => 'image',
+  144:                  'principale' => 'oui',
+  145:                  'table_objet_surnoms' => array('cartesimage'), // table_objet('image') => 'cartes_images'
+  146:                  'field'=> array(
+  147:                          'id_image'           => 'bigint(21) NOT NULL',
+  148:                          'titre'              => 'varchar(25) NOT NULL DEFAULT ""',
+  149:                          'chemin_image'       => 'varchar(25) NOT NULL DEFAULT ""',
+  150:                          'maj'                => 'TIMESTAMP NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\BASE\carterie.php
+  155:                  'key' => array(
+  156:                          'PRIMARY KEY'        => 'id_police',
+  157:                  ),
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\BASE\CARTERIE.PHP
+  152:                  'key' => array(
+  153:                          'PRIMARY KEY'        => 'id_image',
+  154:                  ),
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\BASE\carterie.php
+  159:                   #'date' => '',
+  160:                  'champs_editables'  => array('police', 'titre', 'linkfont', 'font-family'),
+  161:                  'champs_versionnes' => array('police', 'titre', 'linkfont', 'font-family'),
+  162:                  'rechercher_champs' => array("police" => 1, "titre" => 1, "font-family" => 1),
+  163:                  'tables_jointures'  => array(),
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\BASE\CARTERIE.PHP
+  156:                   #'date' => '',
+  157:                  'champs_editables'  => array('titre', 'chemin_image'),
+  158:                  'champs_versionnes' => array('titre', 'chemin_image'),
+  159:                  'rechercher_champs' => array(),
+  160:                  'tables_jointures'  => array(),
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\BASE\carterie.php
+  167:
+  168:          $tables['spip_cartes_images'] = array(
+  169:                  'type' => 'image',
+  170:                  'principale' => 'oui',
+  171:                  'table_objet_surnoms' => array('cartesimage'), // table_objet('image') => 'cartes_images'
+  172:                  'field'=> array(
+  173:                          'id_image'           => 'bigint(21) NOT NULL',
+  174:                          'titre'              => 'varchar(25) NOT NULL DEFAULT ""',
+  175:                          'chemin_image'       => 'varchar(25) NOT NULL DEFAULT ""',
+  176:                          'maj'                => 'TIMESTAMP NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\BASE\CARTERIE.PHP
+  164:
+  165:          $tables['spip_carte_modeles_textes'] = array(
+  166:                  'type' => 'carte_modeles_texte',
+  167:                  'principale' => 'oui',
+  168:                  'table_objet_surnoms' => array('cartemodelestexte'), // table_objet('carte_modeles_texte') => 'carte_modeles_te
+  169:  xtes'
+  170:                  'field'=> array(
+  171:                          'id_carte_modeles_texte' => 'bigint(21) NOT NULL',
+  172:                          'id_type_carte'      => 'int(11) NOT NULL DEFAULT 0',
+  173:                          'titre'              => 'varchar(255) NOT NULL DEFAULT ""',
+  174:                          'texte_modele'       => 'varchar(255) NOT NULL DEFAULT ""',
+  175:                          'maj'                => 'TIMESTAMP NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\BASE\carterie.php
+  178:                  'key' => array(
+  179:                          'PRIMARY KEY'        => 'id_image',
+  180:                  ),
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\BASE\CARTERIE.PHP
+  177:                  'key' => array(
+  178:                          'PRIMARY KEY'        => 'id_carte_modeles_texte',
+  179:                  ),
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\BASE\carterie.php
+  182:                   #'date' => '',
+  183:                  'champs_editables'  => array('titre', 'chemin_image'),
+  184:                  'champs_versionnes' => array('titre', 'chemin_image'),
+  185:                  'rechercher_champs' => array(),
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\BASE\CARTERIE.PHP
+  181:                   #'date' => '',
+  182:                  'champs_editables'  => array('titre', 'texte_modele'),
+  183:                  'champs_versionnes' => array('titre', 'texte_modele'),
+  184:                  'rechercher_champs' => array(),
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\BASE\carterie.php
+  190:
+  191:          $tables['spip_carte_modeles_textes'] = array(
+  192:                  'type' => 'carte_modeles_texte',
+  193:                  'principale' => 'oui',
+  194:                  'table_objet_surnoms' => array('cartemodelestexte'), // table_objet('carte_modeles_texte') => 'carte_modeles_te
+  195:  xtes'
+  196:                  'field'=> array(
+  197:                          'id_carte_modeles_texte' => 'bigint(21) NOT NULL',
+  198:                          'id_type_carte'      => 'int(11) NOT NULL DEFAULT 0',
+  199:                          'titre'              => 'varchar(255) NOT NULL DEFAULT ""',
+  200:                          'texte_modele'       => 'varchar(255) NOT NULL DEFAULT ""',
+  201:                          'maj'                => 'TIMESTAMP NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'
+  202:                  ),
+  203:                  'key' => array(
+  204:                          'PRIMARY KEY'        => 'id_carte_modeles_texte',
+  205:                  ),
+  206:                  'titre' => 'titre AS titre, "" AS lang',
+  207:                   #'date' => '',
+  208:                  'champs_editables'  => array('titre', 'texte_modele'),
+  209:                  'champs_versionnes' => array('titre', 'texte_modele'),
+  210:                  'rechercher_champs' => array(),
+  211:                  'tables_jointures'  => array(),
+  212:
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\BASE\CARTERIE.PHP
+  189:
+  190:          return $tables;
+  191:  }
+  192:
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\BASE\carterie.php
+  213:
+  214:          );
+  215:
+  216:          return $tables;
+  217:  }
+  218:
+  219:
+  220:  /**
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\BASE\CARTERIE.PHP
+  193:
+  194:  /**
+*****
+
+
+
+carterie_administrations.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_administrations.php et ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_ADMINISTRATIONS.PHP
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_administrations.php
+   54:          $maj['create'] = array(array('maj_tables', array('spip_cartes_commandes', 'spip_cartes_tailles_zones', 'spip_cartes_tai
+   55:  lles_zones_liens', 'spip_cartes_polices', 'spip_cartes_images', 'spip_carte_modeles_textes')));
+   56:
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_ADMINISTRATIONS.PHP
+   54:          $maj['create'] = array(array('maj_tables', array('spip_cartes_commandes', 'spip_cartes_tailles_zones', 'spip_cartes_tai
+   55:  lles_zones_liens', 'spip_cartes_images', 'spip_carte_modeles_textes')));
+   56:
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_administrations.php
+   82:          sql_drop_table('spip_cartes_tailles_zones_liens');
+   83:          sql_drop_table('spip_cartes_polices');
+   84:          sql_drop_table('spip_cartes_images');
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_ADMINISTRATIONS.PHP
+   82:          sql_drop_table('spip_cartes_tailles_zones_liens');
+   83:          sql_drop_table('spip_cartes_images');
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_administrations.php
+   87:          # Nettoyer les liens courants (le génie optimiser_base_disparus se chargera de nettoyer toutes les tables de liens)
+   88:          sql_delete('spip_documents_liens', sql_in('objet', array('commande', 'taille_zone', 'police', 'image', 'carte_modeles_t
+   89:  exte')));
+   90:          sql_delete('spip_mots_liens', sql_in('objet', array('commande', 'taille_zone', 'police', 'image', 'carte_modeles_texte'
+   91:  )));
+   92:          sql_delete('spip_auteurs_liens', sql_in('objet', array('commande', 'taille_zone', 'police', 'image', 'carte_modeles_tex
+   93:  te')));
+   94:          # Nettoyer les versionnages et forums
+   95:          sql_delete('spip_versions', sql_in('objet', array('commande', 'taille_zone', 'police', 'image', 'carte_modeles_texte'))
+   96:  );
+   97:          sql_delete('spip_versions_fragments', sql_in('objet', array('commande', 'taille_zone', 'police', 'image', 'carte_modele
+   98:  s_texte')));
+   99:          sql_delete('spip_forum', sql_in('objet', array('commande', 'taille_zone', 'police', 'image', 'carte_modeles_texte')));
+  100:
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_ADMINISTRATIONS.PHP
+   86:          # Nettoyer les liens courants (le génie optimiser_base_disparus se chargera de nettoyer toutes les tables de liens)
+   87:          sql_delete('spip_documents_liens', sql_in('objet', array('commande', 'taille_zone', 'image', 'carte_modeles_texte')));
+   88:          sql_delete('spip_mots_liens', sql_in('objet', array('commande', 'taille_zone', 'image', 'carte_modeles_texte')));
+   89:          sql_delete('spip_auteurs_liens', sql_in('objet', array('commande', 'taille_zone', 'image', 'carte_modeles_texte')));
+   90:          # Nettoyer les versionnages et forums
+   91:          sql_delete('spip_versions', sql_in('objet', array('commande', 'taille_zone', 'image', 'carte_modeles_texte')));
+   92:          sql_delete('spip_versions_fragments', sql_in('objet', array('commande', 'taille_zone', 'image', 'carte_modeles_texte'))
+   93:  );
+   94:          sql_delete('spip_forum', sql_in('objet', array('commande', 'taille_zone', 'image', 'carte_modeles_texte')));
+   95:
+*****
+
+
+
+carterie_autorisations.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php et ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  234:  }// -----------------
+  235:  // Objet cartes_polices
+  236:
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  234:  }// -----------------
+  235:  // Objet cartes_images
+  236:
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  238:  /**
+  239:   * Autorisation de voir un élément de menu (cartespolices)
+  240:   *
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  238:  /**
+  239:   * Autorisation de voir un élément de menu (cartesimages)
+  240:   *
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  247:  **/
+  248:  function autoriser_cartespolices_menu_dist($faire, $type, $id, $qui, $opt) {
+  249:          return true;
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  247:  **/
+  248:  function autoriser_cartesimages_menu_dist($faire, $type, $id, $qui, $opt) {
+  249:          return true;
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  253:  /**
+  254:   * Autorisation de voir le bouton d'accès rapide de création (police)
+  255:   *
+  256:   * @param  string $faire Action demandée
+  257:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  258:   * @param  int    $id    Identifiant de l'objet
+  259:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  260:   * @param  array  $opt   Options de cette autorisation
+  261:   * @return bool          true s'il a le droit, false sinon
+  262:  **/
+  263:  function autoriser_policecreer_menu_dist($faire, $type, $id, $qui, $opt) {
+  264:          return autoriser('creer', 'police', '', $qui, $opt);
+  265:  }
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  253:  /**
+  254:  * Autorisation de voir (cartesimages)
+  255:  *
+  256:  * @param  string $faire Action demandée
+  257:  * @param  string $type  Type d'objet sur lequel appliquer l'action
+  258:  * @param  int    $id    Identifiant de l'objet
+  259:  * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  260:  * @param  array  $opt   Options de cette autorisation
+  261:  * @return bool          true s'il a le droit, false sinon
+  262:  **/
+  263:  function autoriser_cartesimages_voir_dist($faire, $type, $id, $qui, $opt) {
+  264:          return true;
+  265:  }
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  267:  /**
+  268:  * Autorisation de voir (cartespolices)
+  269:  *
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  267:  /**
+  268:  * Autorisation de voir (image)
+  269:  *
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  276:  **/
+  277:  function autoriser_cartespolices_voir_dist($faire, $type, $id, $qui, $opt) {
+  278:          return true;
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  276:  **/
+  277:  function autoriser_image_voir_dist($faire, $type, $id, $qui, $opt) {
+  278:          return true;
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  281:  /**
+  282:  * Autorisation de voir (police)
+  283:  *
+  284:  * @param  string $faire Action demandée
+  285:  * @param  string $type  Type d'objet sur lequel appliquer l'action
+  286:  * @param  int    $id    Identifiant de l'objet
+  287:  * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  288:  * @param  array  $opt   Options de cette autorisation
+  289:  * @return bool          true s'il a le droit, false sinon
+  290:  **/
+  291:  function autoriser_police_voir_dist($faire, $type, $id, $qui, $opt) {
+  292:          return true;
+  293:  }
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  281:  /**
+  282:   * Autorisation de créer (image)
+  283:   *
+  284:   * @param  string $faire Action demandée
+  285:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  286:   * @param  int    $id    Identifiant de l'objet
+  287:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  288:   * @param  array  $opt   Options de cette autorisation
+  289:   * @return bool          true s'il a le droit, false sinon
+  290:  **/
+  291:  function autoriser_image_creer_dist($faire, $type, $id, $qui, $opt) {
+  292:          return in_array($qui['statut'], array('0minirezo', '1comite'));
+  293:  }
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  295:  /**
+  296:   * Autorisation de créer (police)
+  297:   *
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  295:  /**
+  296:   * Autorisation de modifier (image)
+  297:   *
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  304:  **/
+  305:  function autoriser_police_creer_dist($faire, $type, $id, $qui, $opt) {
+  306:          return in_array($qui['statut'], array('0minirezo', '1comite'));
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  304:  **/
+  305:  function autoriser_image_modifier_dist($faire, $type, $id, $qui, $opt) {
+  306:          return in_array($qui['statut'], array('0minirezo', '1comite'));
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  309:  /**
+  310:   * Autorisation de modifier (police)
+  311:   *
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  309:  /**
+  310:   * Autorisation de supprimer (image)
+  311:   *
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  318:  **/
+  319:  function autoriser_police_modifier_dist($faire, $type, $id, $qui, $opt) {
+  320:          return in_array($qui['statut'], array('0minirezo', '1comite'));
+  321:  }
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  318:  **/
+  319:  function autoriser_image_supprimer_dist($faire, $type, $id, $qui, $opt) {
+  320:          return $qui['statut'] == '0minirezo' and !$qui['restreint'];
+  321:  }
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  322:
+  323:  /**
+  324:   * Autorisation de supprimer (police)
+  325:   *
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  322:
+  323:
+  324:  // -----------------
+  325:  // Objet carte_modeles_textes
+  326:
+  327:
+  328:  /**
+  329:   * Autorisation de voir un élément de menu (cartemodelestextes)
+  330:   *
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  332:  **/
+  333:  function autoriser_police_supprimer_dist($faire, $type, $id, $qui, $opt) {
+  334:          return $qui['statut'] == '0minirezo' and !$qui['restreint'];
+  335:  }
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  337:  **/
+  338:  function autoriser_cartemodelestextes_menu_dist($faire, $type, $id, $qui, $opt) {
+  339:          return true;
+  340:  }
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  337:
+  338:  // -----------------
+  339:  // Objet cartes_images
+  340:
+  341:
+  342:  /**
+  343:   * Autorisation de voir un élément de menu (cartesimages)
+  344:   *
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  342:
+  343:  /**
+  344:   * Autorisation de voir le bouton d'accès rapide de création (cartemodelestexte)
+  345:   *
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  351:  **/
+  352:  function autoriser_cartesimages_menu_dist($faire, $type, $id, $qui, $opt) {
+  353:          return true;
+  354:  }
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  352:  **/
+  353:  function autoriser_cartemodelestextecreer_menu_dist($faire, $type, $id, $qui, $opt) {
+  354:          return autoriser('creer', 'carte_modeles_texte', '', $qui, $opt);
+  355:  }
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  355:
+  356:
+  357:  /**
+  358:  * Autorisation de voir (cartesimages)
+  359:  *
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  356:
+  357:  /**
+  358:  * Autorisation de voir (cartemodelestextes)
+  359:  *
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  366:  **/
+  367:  function autoriser_cartesimages_voir_dist($faire, $type, $id, $qui, $opt) {
+  368:          return true;
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  366:  **/
+  367:  function autoriser_cartemodelestextes_voir_dist($faire, $type, $id, $qui, $opt) {
+  368:          return true;
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  371:  /**
+  372:  * Autorisation de voir (image)
+  373:  *
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  371:  /**
+  372:  * Autorisation de voir (cartemodelestexte)
+  373:  *
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  380:  **/
+  381:  function autoriser_image_voir_dist($faire, $type, $id, $qui, $opt) {
+  382:          return true;
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  380:  **/
+  381:  function autoriser_cartemodelestexte_voir_dist($faire, $type, $id, $qui, $opt) {
+  382:          return true;
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  385:  /**
+  386:   * Autorisation de créer (image)
+  387:   *
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  385:  /**
+  386:   * Autorisation de créer (cartemodelestexte)
+  387:   *
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  394:  **/
+  395:  function autoriser_image_creer_dist($faire, $type, $id, $qui, $opt) {
+  396:          return in_array($qui['statut'], array('0minirezo', '1comite'));
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  394:  **/
+  395:  function autoriser_cartemodelestexte_creer_dist($faire, $type, $id, $qui, $opt) {
+  396:          return in_array($qui['statut'], array('0minirezo', '1comite'));
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  399:  /**
+  400:   * Autorisation de modifier (image)
+  401:   *
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  399:  /**
+  400:   * Autorisation de modifier (cartemodelestexte)
+  401:   *
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  408:  **/
+  409:  function autoriser_image_modifier_dist($faire, $type, $id, $qui, $opt) {
+  410:          return in_array($qui['statut'], array('0minirezo', '1comite'));
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  408:  **/
+  409:  function autoriser_cartemodelestexte_modifier_dist($faire, $type, $id, $qui, $opt) {
+  410:          return in_array($qui['statut'], array('0minirezo', '1comite'));
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  413:  /**
+  414:   * Autorisation de supprimer (image)
+  415:   *
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  413:  /**
+  414:   * Autorisation de supprimer (cartemodelestexte)
+  415:   *
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  422:  **/
+  423:  function autoriser_image_supprimer_dist($faire, $type, $id, $qui, $opt) {
+  424:          return $qui['statut'] == '0minirezo' and !$qui['restreint'];
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+  422:  **/
+  423:  function autoriser_cartemodelestexte_supprimer_dist($faire, $type, $id, $qui, $opt) {
+  424:          return $qui['statut'] == '0minirezo' and !$qui['restreint'];
+*****
+
+�chec de la resynchronisation. Les fichiers sont trop diff�rents.
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\carterie_autorisations.php
+  426:
+  427:
+  428:  // -----------------
+  429:  // Objet carte_modeles_textes
+  430:
+  431:
+  432:  /**
+  433:   * Autorisation de voir un élément de menu (cartemodelestextes)
+  434:   *
+  435:   * @param  string $faire Action demandée
+  436:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  437:   * @param  int    $id    Identifiant de l'objet
+  438:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  439:   * @param  array  $opt   Options de cette autorisation
+  440:   * @return bool          true s'il a le droit, false sinon
+  441:  **/
+  442:  function autoriser_cartemodelestextes_menu_dist($faire, $type, $id, $qui, $opt) {
+  443:          return true;
+  444:  }
+  445:
+  446:
+  447:  /**
+  448:   * Autorisation de voir le bouton d'accès rapide de création (cartemodelestexte)
+  449:   *
+  450:   * @param  string $faire Action demandée
+  451:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  452:   * @param  int    $id    Identifiant de l'objet
+  453:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  454:   * @param  array  $opt   Options de cette autorisation
+  455:   * @return bool          true s'il a le droit, false sinon
+  456:  **/
+  457:  function autoriser_cartemodelestextecreer_menu_dist($faire, $type, $id, $qui, $opt) {
+  458:          return autoriser('creer', 'carte_modeles_texte', '', $qui, $opt);
+  459:  }
+  460:
+  461:  /**
+  462:  * Autorisation de voir (cartemodelestextes)
+  463:  *
+  464:  * @param  string $faire Action demandée
+  465:  * @param  string $type  Type d'objet sur lequel appliquer l'action
+  466:  * @param  int    $id    Identifiant de l'objet
+  467:  * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  468:  * @param  array  $opt   Options de cette autorisation
+  469:  * @return bool          true s'il a le droit, false sinon
+  470:  **/
+  471:  function autoriser_cartemodelestextes_voir_dist($faire, $type, $id, $qui, $opt) {
+  472:          return true;
+  473:  }
+  474:
+  475:  /**
+  476:  * Autorisation de voir (cartemodelestexte)
+  477:  *
+  478:  * @param  string $faire Action demandée
+  479:  * @param  string $type  Type d'objet sur lequel appliquer l'action
+  480:  * @param  int    $id    Identifiant de l'objet
+  481:  * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  482:  * @param  array  $opt   Options de cette autorisation
+  483:  * @return bool          true s'il a le droit, false sinon
+  484:  **/
+  485:  function autoriser_cartemodelestexte_voir_dist($faire, $type, $id, $qui, $opt) {
+  486:          return true;
+  487:  }
+  488:
+  489:  /**
+  490:   * Autorisation de créer (cartemodelestexte)
+  491:   *
+  492:   * @param  string $faire Action demandée
+  493:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  494:   * @param  int    $id    Identifiant de l'objet
+  495:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  496:   * @param  array  $opt   Options de cette autorisation
+  497:   * @return bool          true s'il a le droit, false sinon
+  498:  **/
+  499:  function autoriser_cartemodelestexte_creer_dist($faire, $type, $id, $qui, $opt) {
+  500:          return in_array($qui['statut'], array('0minirezo', '1comite'));
+  501:  }
+  502:
+  503:  /**
+  504:   * Autorisation de modifier (cartemodelestexte)
+  505:   *
+  506:   * @param  string $faire Action demandée
+  507:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  508:   * @param  int    $id    Identifiant de l'objet
+  509:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  510:   * @param  array  $opt   Options de cette autorisation
+  511:   * @return bool          true s'il a le droit, false sinon
+  512:  **/
+  513:  function autoriser_cartemodelestexte_modifier_dist($faire, $type, $id, $qui, $opt) {
+  514:          return in_array($qui['statut'], array('0minirezo', '1comite'));
+  515:  }
+  516:
+  517:  /**
+  518:   * Autorisation de supprimer (cartemodelestexte)
+  519:   *
+  520:   * @param  string $faire Action demandée
+  521:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  522:   * @param  int    $id    Identifiant de l'objet
+  523:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  524:   * @param  array  $opt   Options de cette autorisation
+  525:   * @return bool          true s'il a le droit, false sinon
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\CARTERIE_AUTORISATIONS.PHP
+*****
+
+
+
+paquet.xml :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\paquet.xml et ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\PAQUET.XML
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\paquet.xml
+   11:          <!--
+   12:                  Paquet généré le 2021-04-14 16:18:25
+   13:                  (Vous pouvez bien entendu supprimer ces commentaires)
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\PAQUET.XML
+   11:          <!--
+   12:                  Paquet généré le 2021-04-20 13:29:40
+   13:                  (Vous pouvez bien entendu supprimer ces commentaires)
+*****
+
+***** ..\PLUGINS\FABRIQUE_AUTO\.BACKUP\CARTERIE\paquet.xml
+   60:  lle_zone-16.png" action="cartes_tailles_zones" />
+   61:          <menu nom="cartes_polices" titre="police:titre_cartes_polices" parent="menu_edition" icone="images/police-16.png" actio
+   62:  n="cartes_polices" />
+   63:          <menu nom="police_creer" titre="police:icone_creer_police" parent="outils_rapides" icone="images/police-new-16.png" act
+   64:  ion="police_edit" parametres="new=oui" />
+   65:          <menu nom="cartes_images" titre="image:titre_cartes_images" parent="menu_edition" icone="images/image-16.png" action="c
+***** ..\PLUGINS\FABRIQUE_AUTO\CARTERIE\PAQUET.XML
+   60:  lle_zone-16.png" action="cartes_tailles_zones" />
+   61:          <menu nom="cartes_images" titre="image:titre_cartes_images" parent="menu_edition" icone="images/image-16.png" action="c
+*****
+

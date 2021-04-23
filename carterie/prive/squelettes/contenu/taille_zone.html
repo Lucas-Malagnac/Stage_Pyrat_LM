@@ -1,0 +1,68 @@
+[(#AUTORISER{voir,taille_zone,#ID_TAILLE_ZONE}|sinon_interdire_acces)]
+[(#SET{url_voir,#VAL{taille_zone}|objet_info{url_voir}})]
+[(#SET{url_edit,#VAL{taille_zone}|objet_info{url_edit}})]
+<BOUCLE_taille_zone(CARTES_TAILLES_ZONES){id_taille_zone}{si #ENV{exec}|=={#GET{url_voir}}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,taille_zone,#ID_TAILLE_ZONE})
+		[(#ID_TAILLE_ZONE|afficher_qui_edite{taille_zone}|non)
+			[(#URL_ECRIRE{#GET{url_edit},id_taille_zone=#ID_TAILLE_ZONE}|icone_verticale{<:taille_zone:icone_modifier_taille_zone:/>,taille_zone,edit,right ajax preload})]
+		]
+		[(#ID_TAILLE_ZONE|afficher_qui_edite{taille_zone}|oui)
+			[(#URL_ECRIRE{#GET{url_edit},id_taille_zone=#ID_TAILLE_ZONE}|icone_verticale{#ID_TAILLE_ZONE|afficher_qui_edite{taille_zone},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#TITRE|sinon{<:info_sans_titre:/>})[(#CHEMIN_IMAGE{taille_zone-24.png}|balise_img{taille_zone,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{taille_zone,#ID_TAILLE_ZONE}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/taille_zone,id=#ID_TAILLE_ZONE,id_taille_zone=#ID_TAILLE_ZONE,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,taille_zone,#ID_TAILLE_ZONE})
+	[(#ID_TAILLE_ZONE|afficher_qui_edite{taille_zone}|non)
+		[(#URL_ECRIRE{#GET{url_edit},id_taille_zone=#ID_TAILLE_ZONE}|icone_verticale{<:taille_zone:icone_modifier_taille_zone:/>,taille_zone,edit,right ajax preload})]
+	]
+	[(#ID_TAILLE_ZONE|afficher_qui_edite{taille_zone}|oui)
+		[(#URL_ECRIRE{#GET{url_edit},id_taille_zone=#ID_TAILLE_ZONE}|icone_verticale{#ID_TAILLE_ZONE|afficher_qui_edite{taille_zone},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+<div class="nettoyeur"></div>
+<div class="liste">
+	<BOUCLE_objetslies(spip_cartes_tailles_zones_liens){id_taille_zone}{0,1}><h3><:taille_zone:titre_objets_lies_taille_zone:/></h3></BOUCLE_objetslies>
+
+	<BOUCLE_listeobjets(spip_cartes_tailles_zones_liens){id_taille_zone}{fusion objet}{par objet}>
+		#SET{table,#OBJET|table_objet}
+		[(#SET{titre,[#OBJET:info_(#GET{table})_liees_taille_zone]})]
+		[(#SET{liste,#VAL{prive/objets/liste/#GET{table}}|trouver_fond|?{#GET{table},objets_lies_taille_zone}})]
+		<INCLURE{fond=prive/objets/liste/#GET{liste},objet,id_taille_zone,ajax,env} />
+	</BOUCLE_listeobjets>
+</div>
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,taille_zone,id,#ID_TAILLE_ZONE},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+
+
+#SET{enfants,''}
+[(#VAL{prive/objets/contenu/taille_zone-enfants}|trouver_fond|oui)
+	[(#SET{enfants,[(#INCLURE{fond=prive/objets/contenu/taille_zone-enfants,id_taille_zone,env})]})]
+]
+[(#PIPELINE{affiche_enfants,[(#ARRAY{args,#ARRAY{exec,taille_zone,id_taille_zone,#ID_TAILLE_ZONE,objet,taille_zone,id_objet,#ID_TAILLE_ZONE},data,#GET{enfants}})]})]
+
+[(#CONST{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_taille_zone>
+[(#ENV**{exec}|=={#GET{url_edit}}|?{#INCLURE{fond=prive/squelettes/contenu/#GET{url_edit},redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_taille_zone>
